@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>protonet widget-example</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+    <script>
+      var protonet = protonet || {};
+      protonet.events = {}
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src='/js/lib/store.min.js'></script>
+    <script src="/js/lib/class.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/js/lib/browser.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src='/js/dispatcher/emitter.js'></script>
+    <script src='/js/dispatcher/dispatcher.js'></script>
+    <script src='/js/dispatcher/websocket.js'></script>
+
+    <script>
+      protonet.config   = {
+        api_url:                          "http://yourapp.heroku.com/",
+        dispatching_websocket_url:        "ws://team.protonet.info/websocket",
+        dispatching_websocket_url_ssl:    "wss://team.protonet.info/websocket",
+        user:                             store.get('user'),
+        dispatching_websocket_delimiter:  "\0",
+      };
+      protonet.events   = protonet.events           || {};
+      
+      protonet.Emitter  = new protonet.events.Emitter();
+      $.extend(protonet, protonet.Emitter);
+    </script>
+
+    <script src="js/application.js" type="text/javascript" charset="utf-8"></script>
+
+  </head>
+  <body>
+
+    <div id="widget">
+      <nav>
+        <a class='widget-email' href='#widget-email'>Email</a>
+        <a class='widget-phone' href='#widget-phone'>Telefon</a>
+        <a class='widget-livechat' href='#widget-live-chat'>Livechat</a>
+      </nav>
+      <div class='widget-body' id='widget-email'>
+        <p>
+          Haben Sie Fragen?<br>
+          Schreiben Sie uns!
+          <a href='mailto:team@protonet.info'>Hier klicken!</a>
+        </p>
+      </div>
+      <div class='widget-body' id='widget-phone'>
+        <p>
+          Rufen Sie uns an! <br>
+          (Mo - Fr 10:00 - 18:00 Uhr)
+          <a href='tel:004940228171560'>+49 (40) 228 171 560</a>
+        </p>
+      </div>
+      <div class='widget-body' id='widget-livechat'>
+        <ul id='timeline'>
+          <li class='teaser'>
+            <p>Stellen Sie Ihre Frage</p>
+          </li>
+        </ul>
+        <form action='#' id='live-chat'>
+          <input autocapitalize='off' autocomplete='off' id='chat-message' name='message' type='text'>
+        </form>
+      </div>
+    </div>
+
+  </body>
+</html>
